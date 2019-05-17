@@ -4,23 +4,33 @@ public class UsandoListaSimpleEnlazada {
 
     public static void main(String[] args) {
 
-        ListaSimpleEnlazada lista = new ListaSimpleEnlazada();
+        ListaSimpleEnlazada l = new ListaSimpleEnlazada();
 
-        System.out.println("Lista vacía: " + lista.vacia());
+        //System.out.println("Lista vacía: " + l.vacia());
 
-        lista.agregar(3);
-        lista.agregar("Jesus");
-        lista.agregar("Roberto");
+        l.agregar(3);
+        l.agregar("Jesus");
+        l.agregar("Roberto");
+        l.agregar('F');
+        l.agregar("Jose");
+        l.agregar("Maria");
+        l.agregar(true);
+        l.agregar(3.2);
 
-        System.out.println("Nodo 2: " + lista.obtener(2));
-        System.out.println("Último nodo: " + lista.obtener(lista.getLongitud() - 1));
+        /*System.out.println("Nodo 2: " + l.obtener(2));
+        System.out.println("Último nodo: " + l.obtener(l.getLongitud() - 1));
 
-        System.out.println("Número de nodos: " + lista.getLongitud());
-        System.out.println("Lista vacía: " + lista.vacia());
+        System.out.println("Número de nodos: " + l.getLongitud());
+        System.out.println("Lista vacía: " + l.vacia());*/
 
-        for (int i = 0; i <= 10; i++) {
-            System.out.println(lista.obtener(i));
-        }
+        /*for (int i = 0; i < l.getLongitud(); i++) {
+            System.out.println(l.obtener(i));
+        }*/
+
+        int posicion = l.buscar("Jose");
+
+        System.out.println("El dato 'Jose' está en la posición: " + posicion);
+
 
     }
 }

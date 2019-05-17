@@ -45,4 +45,13 @@ public class ListaSimpleEnlazada {
     public int getLongitud() {
         return longitud;
     }
+
+    public Integer buscar(Object o){
+        for(int i=0; i < this.longitud ; i++){
+            if(this.obtener(i).equals(o)){
+                return i;
+            }
+        }
+        return null;
+    }
 }
