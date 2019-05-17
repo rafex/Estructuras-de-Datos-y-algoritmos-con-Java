@@ -32,26 +32,70 @@ public class ListaSimpleEnlazada {
     }
 
     public Object obtener(int indice) {
-        if (longitud != 0 && indice < longitud) {
-            Nodo temp = cabecera;
-            for (int i = 0; i < indice; i++) {
-                temp = temp.getSiguiente();
-            }
-            return temp.getDato();
-        }
-        throw new ArrayIndexOutOfBoundsException("Excedio el limite del la lista");
+        Nodo nodo = obtenerNodo(indice);
+        if (nodo != null)
+            return nodo.getDato();
+        return null;
     }
 
     public int getLongitud() {
         return longitud;
     }
 
-    public Integer buscar(Object o){
-        for(int i=0; i < this.longitud ; i++){
-            if(this.obtener(i).equals(o)){
+    public Integer buscar(Object o) {
+        for (int i = 0; i < this.longitud; i++) {
+            if (this.obtener(i).equals(o)) {
                 return i;
             }
         }
         return null;
+    }
+
+    public boolean eliminar(int indice) {
+        boolean eliminado = false;
+        Nodo nodoAnterior;
+        Nodo nodoAEliminar;
+        Nodo nodoSiguiente;
+        try {
+            nodoAEliminar = obtenerNodo(indice);
+            nodoSiguiente = nodoAEliminar.getSiguiente();
+            if(indice == 0){
+                nodoAEliminar.enlazar(null);
+                cabecera = nodoSiguiente;
+                eliminado = true;
+                longitud--;
+                return eliminado;
+            }
+
+            nodoAnterior = obtenerNodo(indice - 1);
+            if (indice == longitud - 1) {
+                nodoAnterior.enlazar(null);
+                eliminado = true;
+                longitud--;
+                return eliminado;
+            }
+
+            nodoAnterior.enlazar(nodoSiguiente);
+            eliminado = true;
+            longitud--;
+        } catch (NullPointerException e) {
+            eliminado = false;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            eliminado = false;
+        }
+
+        return eliminado;
+    }
+
+    private Nodo obtenerNodo(int indice) {
+        if (longitud != 0 && indice < longitud) {
+            Nodo temp = cabecera;
+            for (int i = 0; i < indice; i++) {
+                temp = temp.getSiguiente();
+            }
+            return temp;
+        } else {
+            throw new ArrayIndexOutOfBoundsException("Excedio el limite del la lista");
+        }
     }
 }
