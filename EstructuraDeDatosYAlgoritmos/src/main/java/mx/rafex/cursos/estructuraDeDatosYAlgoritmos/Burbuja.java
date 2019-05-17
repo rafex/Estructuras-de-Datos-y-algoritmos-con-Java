@@ -4,7 +4,7 @@ public class Burbuja {
 
     public static void main(final String[] args) {
 
-        final int[] ARREGLO = { 9, 5, 8, 2, 6, 1, 7, 3, 4 };
+        final int[] ARREGLO = {9, 5, 8, 2, 6, 1, 7, 3, 4};
 
         System.out.println("Sin arreglar:");
         System.out.print("{");
@@ -16,6 +16,7 @@ public class Burbuja {
                 System.out.print(ARREGLO[i] + ",");
             }
         }
+
         System.out.print("}");
 
         System.out.println();
