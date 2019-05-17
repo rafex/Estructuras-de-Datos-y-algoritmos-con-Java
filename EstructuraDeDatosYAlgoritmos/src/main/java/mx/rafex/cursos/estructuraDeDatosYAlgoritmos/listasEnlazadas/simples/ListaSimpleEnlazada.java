@@ -23,15 +23,23 @@ public class ListaSimpleEnlazada {
     }
 
     public boolean vacia() {
-        return cabecera == null ? true : false;
+        if (cabecera == null) {
+            return true;
+        } else {
+            return false;
+        }
+        //return cabecera == null ? true : false;
     }
 
     public Object obtener(int indice) {
-        Nodo temp = cabecera;
-        for (int i = 1; i < indice; i++) {
-            temp = temp.getSiguiente();
+        if (longitud != 0 && indice < longitud) {
+            Nodo temp = cabecera;
+            for (int i = 0; i < indice; i++) {
+                temp = temp.getSiguiente();
+            }
+            return temp.getDato();
         }
-        return temp.getDato();
+        throw new ArrayIndexOutOfBoundsException("Excedio el limite del la lista");
     }
 
     public int getLongitud() {
