@@ -61,6 +61,7 @@ public class ListaSimpleEnlazada {
             nodoSiguiente = nodoAEliminar.getSiguiente();
             if(indice == 0){
                 nodoAEliminar.enlazar(null);
+                nodoAEliminar = null;
                 cabecera = nodoSiguiente;
                 eliminado = true;
                 longitud--;
@@ -70,12 +71,14 @@ public class ListaSimpleEnlazada {
             nodoAnterior = obtenerNodo(indice - 1);
             if (indice == longitud - 1) {
                 nodoAnterior.enlazar(null);
+                nodoAEliminar = null;
                 eliminado = true;
                 longitud--;
                 return eliminado;
             }
 
             nodoAnterior.enlazar(nodoSiguiente);
+            nodoAEliminar = null;
             eliminado = true;
             longitud--;
         } catch (NullPointerException e) {
