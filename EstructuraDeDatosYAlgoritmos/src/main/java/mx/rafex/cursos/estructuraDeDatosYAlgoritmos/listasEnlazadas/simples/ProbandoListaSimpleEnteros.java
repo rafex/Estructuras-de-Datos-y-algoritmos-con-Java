@@ -14,8 +14,17 @@ public class ProbandoListaSimpleEnteros {
 
 
         for (int i = 0; i < listaEnteros.getLongitud(); i++) {
-            System.out.println("posicion: [" + i + "] = " + listaEnteros.obtener(i));
+            System.out.println("posición: [" + i + "] = " + listaEnteros.obtener(i));
         }
+
+        System.out.println("---------");
+
+        listaEnteros.ordenar();
+
+        for (int i = 0; i < listaEnteros.getLongitud(); i++) {
+            System.out.println("posición: [" + i + "] = " + listaEnteros.obtener(i));
+        }
+
 
     }
 

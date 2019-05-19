@@ -84,11 +84,50 @@ public class ListaSimpleEnlazada<E> {
     }
 
     public void ordenar() {
-        Nodo menor;
-        Nodo mayor;
-        Nodo auxiliar;
-    }
+        if (longitud > 1) {
+            boolean wasChanged;
 
+            do {
+                Nodo current = cabecera;
+                Nodo previous = null;
+                Nodo next = cabecera.getSiguiente();
+                wasChanged = false;
+
+                while (next != null) {
+                    if (((Comparable) current.getDato()).compareTo(next.getDato()) > 0) {
+                        /*
+                        // This is just a literal translation
+                        // of bubble ordenar in an array
+                        Node temp = currentNode;
+                        currentNode = next;
+                        next = temp;*/
+                        wasChanged = true;
+
+                        if (previous != null) {
+                            Nodo sig = next.getSiguiente();
+
+                            previous.enlazar(next);
+                            next.enlazar(current);
+                            current.enlazar(sig);
+                        } else {
+                            Nodo sig = next.getSiguiente();
+
+                            cabecera = next;
+                            next.enlazar(current);
+                            current.enlazar(sig);
+                        }
+
+                        previous = next;
+                        next = current.getSiguiente();
+                    } else {
+                        previous = current;
+                        current = next;
+                        next = next.getSiguiente();
+                    }
+                }
+            } while (wasChanged);
+        }
+    }
 
     private Nodo obtenerNodo(int indice) {
         if (longitud != 0 && indice < longitud) {
@@ -98,7 +137,7 @@ public class ListaSimpleEnlazada<E> {
             }
             return temp;
         } else {
-            throw new ArrayIndexOutOfBoundsException("Excedio el limite del la lista");
+            throw new ArrayIndexOutOfBoundsException("Excedió el limite del la lista");
         }
     }
 
