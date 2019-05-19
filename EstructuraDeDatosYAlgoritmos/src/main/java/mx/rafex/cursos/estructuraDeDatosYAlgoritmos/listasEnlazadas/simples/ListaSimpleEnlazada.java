@@ -1,6 +1,6 @@
 package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.simples;
 
-public class ListaSimpleEnlazada<E> {
+public class ListaSimpleEnlazada<E> implements Lista<E> {
 
     private Nodo cabecera;
     private int longitud;
@@ -10,6 +10,7 @@ public class ListaSimpleEnlazada<E> {
         this.longitud = 0;
     }
 
+    @Override
     public void agregar(E valor) {
         if (cabecera == null) {
             cabecera = new Nodo(valor);
@@ -22,10 +23,12 @@ public class ListaSimpleEnlazada<E> {
         longitud++;
     }
 
+    @Override
     public boolean estaVacia() {
         return cabecera == null;
     }
 
+    @Override
     public Object obtener(int indice) {
         Nodo nodo = obtenerNodo(indice);
         if (nodo != null)
@@ -33,10 +36,12 @@ public class ListaSimpleEnlazada<E> {
         return null;
     }
 
+    @Override
     public int getLongitud() {
         return longitud;
     }
 
+    @Override
     public Integer buscar(E value) {
         for (int i = 0; i < this.longitud; i++) {
             if (this.obtener(i).equals(value)) {
@@ -46,6 +51,7 @@ public class ListaSimpleEnlazada<E> {
         return null;
     }
 
+    @Override
     public boolean eliminar(int indice) {
         boolean eliminado;
         Nodo nodoAnterior;
@@ -83,7 +89,8 @@ public class ListaSimpleEnlazada<E> {
         return eliminado;
     }
 
-    public void ordenar() {
+    @Override
+    public void ordenar(int orden) {
         if (longitud > 1) {
             boolean wasChanged;
 
@@ -94,39 +101,79 @@ public class ListaSimpleEnlazada<E> {
                 wasChanged = false;
 
                 while (next != null) {
-                    if (((Comparable) current.getDato()).compareTo(next.getDato()) > 0) {
+                    switch (orden) {
+                        case ASCENDENTE:
+                            if (((Comparable) current.getDato()).compareTo(next.getDato()) > 0) {
                         /*
                         // This is just a literal translation
                         // of bubble ordenar in an array
                         Node temp = currentNode;
                         currentNode = next;
                         next = temp;*/
-                        wasChanged = true;
+                                wasChanged = true;
 
-                        if (previous != null) {
-                            Nodo sig = next.getSiguiente();
+                                if (previous != null) {
+                                    Nodo sig = next.getSiguiente();
 
-                            previous.enlazar(next);
-                            next.enlazar(current);
-                            current.enlazar(sig);
-                        } else {
-                            Nodo sig = next.getSiguiente();
+                                    previous.enlazar(next);
+                                    next.enlazar(current);
+                                    current.enlazar(sig);
+                                } else {
+                                    Nodo sig = next.getSiguiente();
 
-                            cabecera = next;
-                            next.enlazar(current);
-                            current.enlazar(sig);
-                        }
+                                    cabecera = next;
+                                    next.enlazar(current);
+                                    current.enlazar(sig);
+                                }
 
-                        previous = next;
-                        next = current.getSiguiente();
-                    } else {
-                        previous = current;
-                        current = next;
-                        next = next.getSiguiente();
+                                previous = next;
+                                next = current.getSiguiente();
+                            } else {
+                                previous = current;
+                                current = next;
+                                next = next.getSiguiente();
+                            }
+                            break;
+                        case DESCENDENTE:
+                            if (((Comparable) current.getDato()).compareTo(next.getDato()) < 0) {
+                        /*
+                        // This is just a literal translation
+                        // of bubble ordenar in an array
+                        Node temp = currentNode;
+                        currentNode = next;
+                        next = temp;*/
+                                wasChanged = true;
+
+                                if (previous != null) {
+                                    Nodo sig = next.getSiguiente();
+
+                                    previous.enlazar(next);
+                                    next.enlazar(current);
+                                    current.enlazar(sig);
+                                } else {
+                                    Nodo sig = next.getSiguiente();
+
+                                    cabecera = next;
+                                    next.enlazar(current);
+                                    current.enlazar(sig);
+                                }
+
+                                previous = next;
+                                next = current.getSiguiente();
+                            } else {
+                                previous = current;
+                                current = next;
+                                next = next.getSiguiente();
+                            }
+                            break;
                     }
                 }
             } while (wasChanged);
         }
+    }
+
+    public void ordenar() {
+        this.ordenar(ASCENDENTE);
     }
 
     private Nodo obtenerNodo(int indice) {

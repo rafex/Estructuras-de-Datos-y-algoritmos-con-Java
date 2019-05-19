@@ -19,7 +19,7 @@ public class ProbandoListaSimpleEnteros {
 
         System.out.println("---------");
 
-        listaEnteros.ordenar();
+        listaEnteros.ordenar(Lista.DESCENDENTE);
 
         for (int i = 0; i < listaEnteros.getLongitud(); i++) {
             System.out.println("posición: [" + i + "] = " + listaEnteros.obtener(i));
