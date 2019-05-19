@@ -4,9 +4,9 @@ public class UsandoListaSimpleEnlazada {
 
     public static void main(String[] args) {
 
-        ListaSimpleEnlazada l = new ListaSimpleEnlazada();
+        ListaSimpleEnlazada<Object> l = new ListaSimpleEnlazada<>();
 
-        //System.out.println("Lista vacía: " + l.vacia());
+        //System.out.println("Lista vacía: " + l.estaVacia());
 
         l.agregar(3);
         l.agregar("Jesus");
@@ -21,7 +21,7 @@ public class UsandoListaSimpleEnlazada {
         System.out.println("Último nodo: " + l.obtener(l.getLongitud() - 1));
 
         System.out.println("Número de nodos: " + l.getLongitud());
-        System.out.println("Lista vacía: " + l.vacia());*/
+        System.out.println("Lista vacía: " + l.estaVacia());*/
 
         for (int i = 0; i < l.getLongitud(); i++) {
             System.out.println(l.obtener(i));
