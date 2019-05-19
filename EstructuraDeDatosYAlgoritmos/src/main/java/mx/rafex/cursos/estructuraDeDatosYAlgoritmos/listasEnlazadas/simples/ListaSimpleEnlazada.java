@@ -172,6 +172,7 @@ public class ListaSimpleEnlazada<E> implements Lista<E> {
         }
     }
 
+    @Override
     public void ordenar() {
         this.ordenar(ASCENDENTE);
     }

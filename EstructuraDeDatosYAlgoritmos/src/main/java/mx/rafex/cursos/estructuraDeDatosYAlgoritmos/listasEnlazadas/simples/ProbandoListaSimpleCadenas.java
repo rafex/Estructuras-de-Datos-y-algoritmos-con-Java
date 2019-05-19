@@ -4,7 +4,7 @@ public class ProbandoListaSimpleCadenas {
 
     public static void main(String[] args) {
 
-        ListaSimpleEnlazada<String> l = new ListaSimpleEnlazada<>();
+        Lista<String> l = new ListaSimpleEnlazada<>();
 
         l.agregar("jose");
         l.agregar("pedro");

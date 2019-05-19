@@ -4,7 +4,7 @@ public class ProbandoListaSimpleEnteros {
 
     public static void main(String[] args) {
 
-        ListaSimpleEnlazada<Integer> listaEnteros = new ListaSimpleEnlazada<>();
+        Lista<Integer> listaEnteros = new ListaSimpleEnlazada<>();
 
         listaEnteros.agregar(8);
         listaEnteros.agregar(111);

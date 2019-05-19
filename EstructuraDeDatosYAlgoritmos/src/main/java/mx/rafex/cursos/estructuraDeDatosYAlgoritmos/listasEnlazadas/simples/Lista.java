@@ -18,4 +18,6 @@ public interface Lista<E> {
     boolean eliminar(int indice);
 
     void ordenar(int orden);
+
+    void ordenar();
 }
