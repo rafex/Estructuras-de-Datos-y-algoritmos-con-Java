@@ -1,6 +1,6 @@
 package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.simples;
 
-public class ListaSimpleEnlazada {
+public class ListaSimpleEnlazada<E> {
 
     private Nodo cabecera;
     private int longitud;
@@ -10,25 +10,20 @@ public class ListaSimpleEnlazada {
         this.longitud = 0;
     }
 
-    public void agregar(Object o) {
+    public void agregar(E valor) {
         if (cabecera == null) {
-            cabecera = new Nodo(o);
+            cabecera = new Nodo(valor);
         } else {
             Nodo temp = cabecera;
-            Nodo nuevo = new Nodo(o);
+            Nodo nuevo = new Nodo(valor);
             nuevo.enlazar(temp);
             cabecera = nuevo;
         }
         longitud++;
     }
 
-    public boolean vacia() {
-        if (cabecera == null) {
-            return true;
-        } else {
-            return false;
-        }
-        //return cabecera == null ? true : false;
+    public boolean estaVacia() {
+        return cabecera == null;
     }
 
     public Object obtener(int indice) {
@@ -42,9 +37,9 @@ public class ListaSimpleEnlazada {
         return longitud;
     }
 
-    public Integer buscar(Object o) {
+    public Integer buscar(E value) {
         for (int i = 0; i < this.longitud; i++) {
-            if (this.obtener(i).equals(o)) {
+            if (this.obtener(i).equals(value)) {
                 return i;
             }
         }
@@ -52,14 +47,14 @@ public class ListaSimpleEnlazada {
     }
 
     public boolean eliminar(int indice) {
-        boolean eliminado = false;
+        boolean eliminado;
         Nodo nodoAnterior;
         Nodo nodoAEliminar;
         Nodo nodoSiguiente;
         try {
             nodoAEliminar = obtenerNodo(indice);
             nodoSiguiente = nodoAEliminar.getSiguiente();
-            if(indice == 0){
+            if (indice == 0) {
                 nodoAEliminar.enlazar(null);
                 nodoAEliminar = null;
                 cabecera = nodoSiguiente;
@@ -81,13 +76,57 @@ public class ListaSimpleEnlazada {
             nodoAEliminar = null;
             eliminado = true;
             longitud--;
-        } catch (NullPointerException e) {
-            eliminado = false;
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (NullPointerException | ArrayIndexOutOfBoundsException e) {
             eliminado = false;
         }
 
         return eliminado;
+    }
+
+    public void ordenar() {
+        if (longitud > 1) {
+            boolean wasChanged;
+
+            do {
+                Nodo current = cabecera;
+                Nodo previous = null;
+                Nodo next = cabecera.getSiguiente();
+                wasChanged = false;
+
+                while (next != null) {
+                    if (((Comparable) current.getDato()).compareTo(next.getDato()) > 0) {
+                        /*
+                        // This is just a literal translation
+                        // of bubble ordenar in an array
+                        Node temp = currentNode;
+                        currentNode = next;
+                        next = temp;*/
+                        wasChanged = true;
+
+                        if (previous != null) {
+                            Nodo sig = next.getSiguiente();
+
+                            previous.enlazar(next);
+                            next.enlazar(current);
+                            current.enlazar(sig);
+                        } else {
+                            Nodo sig = next.getSiguiente();
+
+                            cabecera = next;
+                            next.enlazar(current);
+                            current.enlazar(sig);
+                        }
+
+                        previous = next;
+                        next = current.getSiguiente();
+                    } else {
+                        previous = current;
+                        current = next;
+                        next = next.getSiguiente();
+                    }
+                }
+            } while (wasChanged);
+        }
     }
 
     private Nodo obtenerNodo(int indice) {
@@ -98,7 +137,8 @@ public class ListaSimpleEnlazada {
             }
             return temp;
         } else {
-            throw new ArrayIndexOutOfBoundsException("Excedio el limite del la lista");
+            throw new ArrayIndexOutOfBoundsException("Excedió el limite del la lista");
         }
     }
+
 }
