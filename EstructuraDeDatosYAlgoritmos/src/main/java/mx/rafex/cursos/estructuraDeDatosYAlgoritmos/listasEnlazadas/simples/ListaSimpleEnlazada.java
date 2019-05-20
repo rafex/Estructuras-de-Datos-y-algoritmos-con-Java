@@ -1,6 +1,8 @@
 package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.simples;
 
-public class ListaSimpleEnlazada<E> {
+import mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.Lista;
+
+public class ListaSimpleEnlazada<E> implements Lista<E> {
 
     private Nodo cabecera;
     private int longitud;
@@ -10,6 +12,7 @@ public class ListaSimpleEnlazada<E> {
         this.longitud = 0;
     }
 
+    @Override
     public void agregar(E valor) {
         if (cabecera == null) {
             cabecera = new Nodo(valor);
@@ -22,21 +25,25 @@ public class ListaSimpleEnlazada<E> {
         longitud++;
     }
 
+    @Override
     public boolean estaVacia() {
         return cabecera == null;
     }
 
-    public Object obtener(int indice) {
+    @Override
+    public E obtener(int indice) {
         Nodo nodo = obtenerNodo(indice);
         if (nodo != null)
-            return nodo.getDato();
+            return (E) nodo.getDato();
         return null;
     }
 
+    @Override
     public int getLongitud() {
         return longitud;
     }
 
+    @Override
     public Integer buscar(E value) {
         for (int i = 0; i < this.longitud; i++) {
             if (this.obtener(i).equals(value)) {
@@ -46,6 +53,7 @@ public class ListaSimpleEnlazada<E> {
         return null;
     }
 
+    @Override
     public boolean eliminar(int indice) {
         boolean eliminado;
         Nodo nodoAnterior;
@@ -83,50 +91,13 @@ public class ListaSimpleEnlazada<E> {
         return eliminado;
     }
 
+    @Override
+    public void ordenar(int orden) {
+    }
+
+    @Override
     public void ordenar() {
-        if (longitud > 1) {
-            boolean wasChanged;
-
-            do {
-                Nodo current = cabecera;
-                Nodo previous = null;
-                Nodo next = cabecera.getSiguiente();
-                wasChanged = false;
-
-                while (next != null) {
-                    if (((Comparable) current.getDato()).compareTo(next.getDato()) > 0) {
-                        /*
-                        // This is just a literal translation
-                        // of bubble ordenar in an array
-                        Node temp = currentNode;
-                        currentNode = next;
-                        next = temp;*/
-                        wasChanged = true;
-
-                        if (previous != null) {
-                            Nodo sig = next.getSiguiente();
-
-                            previous.enlazar(next);
-                            next.enlazar(current);
-                            current.enlazar(sig);
-                        } else {
-                            Nodo sig = next.getSiguiente();
-
-                            cabecera = next;
-                            next.enlazar(current);
-                            current.enlazar(sig);
-                        }
-
-                        previous = next;
-                        next = current.getSiguiente();
-                    } else {
-                        previous = current;
-                        current = next;
-                        next = next.getSiguiente();
-                    }
-                }
-            } while (wasChanged);
-        }
+        this.ordenar(ASCENDENTE);
     }
 
     private Nodo obtenerNodo(int indice) {

@@ -1,10 +1,12 @@
 package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.simples;
 
+import mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.Lista;
+
 public class UsandoListaSimpleEnlazada {
 
     public static void main(String[] args) {
 
-        ListaSimpleEnlazada<Object> l = new ListaSimpleEnlazada<>();
+        Lista<Object> l = new ListaSimpleEnlazada<>();
 
         //System.out.println("Lista vacía: " + l.estaVacia());
 

@@ -1,16 +1,18 @@
 package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.simples;
 
+import mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.Lista;
+
 public class ProbandoListaSimpleEnteros {
 
     public static void main(String[] args) {
 
-        ListaSimpleEnlazada<Integer> listaEnteros = new ListaSimpleEnlazada<>();
+        Lista<Double> listaEnteros = new ListaSimpleEnlazada<>();
 
-        listaEnteros.agregar(8);
-        listaEnteros.agregar(111);
-        listaEnteros.agregar(3);
-        listaEnteros.agregar(2);
-        listaEnteros.agregar(9);
+        listaEnteros.agregar(8.0);
+        listaEnteros.agregar(111.0);
+        listaEnteros.agregar(9.0);
+        listaEnteros.agregar(2.0);
+        listaEnteros.agregar(32.2);
 
 
         for (int i = 0; i < listaEnteros.getLongitud(); i++) {
@@ -19,7 +21,7 @@ public class ProbandoListaSimpleEnteros {
 
         System.out.println("---------");
 
-        listaEnteros.ordenar();
+        listaEnteros.ordenar(Lista.ASCENDENTE);
 
         for (int i = 0; i < listaEnteros.getLongitud(); i++) {
             System.out.println("posición: [" + i + "] = " + listaEnteros.obtener(i));
