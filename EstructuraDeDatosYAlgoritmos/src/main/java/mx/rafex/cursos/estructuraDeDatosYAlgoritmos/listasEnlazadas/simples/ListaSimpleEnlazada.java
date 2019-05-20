@@ -1,5 +1,7 @@
 package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.simples;
 
+import mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.Lista;
+
 public class ListaSimpleEnlazada<E> implements Lista<E> {
 
     private Nodo cabecera;
@@ -29,10 +31,10 @@ public class ListaSimpleEnlazada<E> implements Lista<E> {
     }
 
     @Override
-    public Object obtener(int indice) {
+    public E obtener(int indice) {
         Nodo nodo = obtenerNodo(indice);
         if (nodo != null)
-            return nodo.getDato();
+            return (E) nodo.getDato();
         return null;
     }
 

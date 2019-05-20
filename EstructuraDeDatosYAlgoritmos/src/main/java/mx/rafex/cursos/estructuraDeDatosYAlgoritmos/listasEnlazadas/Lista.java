@@ -1,4 +1,4 @@
-package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.simples;
+package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas;
 
 public interface Lista<E> {
 

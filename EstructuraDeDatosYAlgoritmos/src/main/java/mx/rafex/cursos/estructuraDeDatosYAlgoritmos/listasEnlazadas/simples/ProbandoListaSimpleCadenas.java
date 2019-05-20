@@ -1,5 +1,7 @@
 package mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.simples;
 
+import mx.rafex.cursos.estructuraDeDatosYAlgoritmos.listasEnlazadas.Lista;
+
 public class ProbandoListaSimpleCadenas {
 
     public static void main(String[] args) {
