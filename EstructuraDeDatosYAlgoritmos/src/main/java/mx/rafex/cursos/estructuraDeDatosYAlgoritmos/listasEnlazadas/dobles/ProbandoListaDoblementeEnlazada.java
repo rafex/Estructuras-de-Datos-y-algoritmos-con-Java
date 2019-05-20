@@ -21,6 +21,8 @@ public class ProbandoListaDoblementeEnlazada {
             System.out.println(l.obtener(i));
         }
 
+        System.out.println("---");
+
 
     }
 }

@@ -4,7 +4,7 @@ public class CadenasEjemplos {
 
     public static void main(final String[] args) {
 
-        final String nombre = "RAUL EDUARDO GONZALEZ ARGOTE";
+        final String nombre = "raul";
 
         final char[] arregloNombre = nombre.toCharArray();
 
@@ -17,7 +17,7 @@ public class CadenasEjemplos {
             }
         }
 
-        System.out.println("El valor del nombre: " + nombre + " es de: " + valorNombre);
+        System.out.println("El valor del nombre: " + nombre + " es de: " + valorNombre%2);
 
         valorNombre = 0;
         int i = 0;

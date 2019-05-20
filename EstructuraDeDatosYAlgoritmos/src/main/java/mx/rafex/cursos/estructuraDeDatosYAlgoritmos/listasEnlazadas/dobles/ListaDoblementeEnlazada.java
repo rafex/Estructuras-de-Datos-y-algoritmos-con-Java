@@ -63,7 +63,73 @@ public class ListaDoblementeEnlazada<E> implements Lista<E> {
 
     @Override
     public void ordenar(int orden) {
+        if (longitud > 1) {
+            boolean cambiar;
 
+            do {
+                Nodo actual = cabecera;
+                Nodo anterior = null;
+                Nodo siguiente = cabecera.getSiguiente();
+                cambiar = false;
+
+                while (siguiente != null) {
+                    switch (orden) {
+                        case ASCENDENTE:
+                            if (((Comparable) actual.getDato()).compareTo(siguiente.getDato()) > 0) {
+                                cambiar = true;
+
+                                if (anterior != null) {
+                                    Nodo sig = siguiente.getSiguiente();
+
+                                    anterior.setSiguiente(siguiente);
+                                    siguiente.setSiguiente(actual);
+                                    actual.setSiguiente(sig);
+                                } else {
+                                    Nodo sig = siguiente.getSiguiente();
+
+                                    cabecera = siguiente;
+                                    siguiente.setSiguiente(actual);
+                                    actual.setSiguiente(sig);
+                                }
+
+                                anterior = siguiente;
+                                siguiente = actual.getSiguiente();
+                            } else {
+                                anterior = actual;
+                                actual = siguiente;
+                                siguiente = siguiente.getSiguiente();
+                            }
+                            break;
+                        case DESCENDENTE:
+                            if (((Comparable) actual.getDato()).compareTo(siguiente.getDato()) < 0) {
+                                cambiar = true;
+
+                                if (anterior != null) {
+                                    Nodo sig = siguiente.getSiguiente();
+
+                                    anterior.setSiguiente(siguiente);
+                                    siguiente.setSiguiente(actual);
+                                    actual.setSiguiente(sig);
+                                } else {
+                                    Nodo sig = siguiente.getSiguiente();
+
+                                    cabecera = siguiente;
+                                    siguiente.setSiguiente(actual);
+                                    actual.setSiguiente(sig);
+                                }
+
+                                anterior = siguiente;
+                                siguiente = actual.getSiguiente();
+                            } else {
+                                anterior = actual;
+                                actual = siguiente;
+                                siguiente = siguiente.getSiguiente();
+                            }
+                            break;
+                    }
+                }
+            } while (cambiar);
+        }
     }
 
     @Override
