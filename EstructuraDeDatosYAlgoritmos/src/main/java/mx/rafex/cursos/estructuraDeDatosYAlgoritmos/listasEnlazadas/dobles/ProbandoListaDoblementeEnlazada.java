@@ -8,13 +8,19 @@ public class ProbandoListaDoblementeEnlazada {
 
         Lista<String> l = new ListaDoblementeEnlazada<>();
 
-        l.agregar("jose");
-        l.agregar("pedro");
-        l.agregar("marco");
+        l.agregar("Imanol");
+        l.agregar("Israel");
+        l.agregar("Carlos");
+        l.agregar("Gustavo");
+        l.agregar("Luis");
+        l.agregar("Alejandro");
+        l.agregar("Sergio");
+        l.agregar("Raul");
 
         for (int i = 0; i < l.getLongitud(); i++) {
             System.out.println(l.obtener(i));
         }
+
 
     }
 }

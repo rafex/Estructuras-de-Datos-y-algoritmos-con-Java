@@ -9,7 +9,7 @@ public interface Lista<E> {
 
     boolean estaVacia();
 
-    Object obtener(int indice);
+    E obtener(int indice);
 
     int getLongitud();
 
